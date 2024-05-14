@@ -12,7 +12,7 @@ from ultralytics import YOLO
 
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
-from tensorflow.keras.layers import GlobalMaxPooling2D
+from tensorflow.keras.layers import GlobalAveragePooling2D
 from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from keras.models import Model
 from tensorflow.keras import Sequential
@@ -42,7 +42,7 @@ req_img = res[coords[1]:coords[3], coords[0]:coords[2]]
 
 resnet = ResNet50(include_top = False, weights = 'imagenet', input_shape = (224,224,3))
 resnet.trainable = False
-model  = Sequential([resnet, GlobalMaxPooling2D()])
+model  = Sequential([resnet, GlobalAveragePooling2D()])
 model.summary()
 
 def feature_extractor(img, model):
