@@ -51,7 +51,7 @@ def feature_extractor(img, model):
   expand_img = np.expand_dims(img,axis = 0)
   preprocessed_img  = preprocess_input(expand_img)
   predicted  = model.predict(preprocessed_img)
-  res = predicted / np.linalg.norm(predicted)
+  res = np.linalg.norm(predicted)
 
   return res.flatten()
 
